@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NoCommerce 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/nocommerce\n"
-"POT-Creation-Date: 2018-06-07 04:09:42+00:00\n"
-"PO-Revision-Date: 2018-06-07 01:09-0300\n"
+"POT-Creation-Date: 2018-06-07 04:38:15+00:00\n"
+"PO-Revision-Date: 2018-06-07 01:38-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -34,6 +34,16 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Fervidum"
 msgstr "Fervidum"
+
+#: includes/class-f9nocommerce.php:96
+msgctxt "Page slug"
+msgid "products"
+msgstr "produtos"
+
+#: includes/class-f9nocommerce.php:97
+msgctxt "Page title"
+msgid "Products"
+msgstr "Produtos"
 
 #~ msgid "Cloning is forbidden."
 #~ msgstr "A clonagem é proibida."

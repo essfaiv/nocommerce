@@ -54,6 +54,8 @@ final class F9nocommerce {
 
 	private function init_hooks() {
 		add_action( 'init', array( $this, 'init' ), 0 );
+
+		add_action( 'init', array( __CLASS__, 'register_post_types' ), 6 );
 	}
 
 	private function define_constants() {
@@ -67,8 +69,15 @@ final class F9nocommerce {
 		}
 	}
 
+	private function is_woocommerce_activated() {
+		return class_exists( 'WooCommerce' );
+	}
+
 	public function init() {
 		$this->load_plugin_textdomain();
+
+		add_filter( 'woocommerce_create_pages', array( $this, 'create_pages' ) );
+		add_filter( 'woocommerce_register_post_type_product', array( $this, 'post_type_product' ) );
 	}
 
 	public function load_plugin_textdomain() {
@@ -76,5 +85,43 @@ final class F9nocommerce {
 		$locale = apply_filters( 'plugin_locale', $locale, 'f9nocommerce' );
 
 		load_textdomain( 'f9nocommerce', dirname( F9NOCOMMERCE_PLUGIN_FILE ) . '/languages/' . $locale . '.mo' );
+	}
+
+	public function create_pages( $pages ) {
+		$dont_create = array(
+			'cart',
+			'checkout',
+			'myaccount',
+		);
+
+		$pages['shop'] = array(
+			'name' => _x( 'products', 'Page slug', 'f9nocommerce' ),
+			'title' => _x( 'Products', 'Page title', 'f9nocommerce' ),
+			'content' => '',
+		);
+
+		foreach ( $dont_create as $page ) {
+			unset( $pages[ $page ] );
+		}
+
+		return $pages;
+	}
+
+	public function post_type_product( $args ) {
+		$product_slug = apply_filters( 'woocommerce_post_type_product_slug', 'product' );
+		if ( 'product' !== $product_slug ) {
+			register_post_type(
+				$product_slug,
+				$args
+			);
+		}
+		return $args;
+	}
+
+	public static function register_post_types() {
+		$product_slug = apply_filters( 'woocommerce_post_type_product_slug', 'product' );
+		if ( 'product' !== $product_slug ) {
+			unregister_post_type( 'product' );
+		}
 	}
 }
