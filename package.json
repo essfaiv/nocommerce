@@ -1,0 +1,19 @@
+{
+  "name": "nocommerce",
+  "description": "Disable commerce features to use WooCommerce as product catalog",
+  "version": "1.0.0",
+  "repository": "github:essfaiv/nocommerce",
+  "license": "UNLICENSED",
+  "author": "Essfaiv",
+  "scripts": {
+    "install": "composer install",
+    "i18n": "./node_modules/grunt/bin/grunt i18n",
+    "phpcs": "composer phpcs",
+    "test": "composer test"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-wp-i18n": "^1.0.2",
+    "load-grunt-tasks": "^4.0.0"
+  }
+}

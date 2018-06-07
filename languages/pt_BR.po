@@ -1,0 +1,48 @@
+# Copyright (C) 2018 Fervidum
+# This file is distributed under the same license as the NoCommerce package.
+msgid ""
+msgstr ""
+"Project-Id-Version: NoCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/nocommerce\n"
+"POT-Creation-Date: 2018-06-07 04:09:42+00:00\n"
+"PO-Revision-Date: 2018-06-07 01:09-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#. Plugin Name of the plugin/theme
+msgid "NoCommerce"
+msgstr "NãoCommerce"
+
+#. Description of the plugin/theme
+msgid "Disable commerce features to use WooCommerce as product catalog."
+msgstr ""
+"Desativa funções de comércio para usar WooCommerce como catálogo de produtos."
+
+#. Author of the plugin/theme
+msgid "Fervidum"
+msgstr "Fervidum"
+
+#~ msgid "Cloning is forbidden."
+#~ msgstr "A clonagem é proibida."
+
+#~ msgid "Unserializing instances of this class is forbidden."
+#~ msgstr "As instâncias de desserialização dessa classe são proibidas."
+
+#~ msgid "http://fervidum.github.io/"
+#~ msgstr "http://fervidum.github.io/"
+
+#~ msgid "http://fervidum.github.io"
+#~ msgstr "http://fervidum.github.io"
