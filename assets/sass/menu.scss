@@ -1,0 +1,11 @@
+/**
+ * menu.scss
+ * Styles applied to dashboard menu items added via WooCommerce.
+ * Adds icons to top level menu items, etc.
+ */
+
+#adminmenu #menu-posts-product .menu-icon-post div.wp-menu-image::before,
+#adminmenu #menu-posts-product .menu-icon-product div.wp-menu-image::before {
+	font-family: dashicons !important;
+	content: '\f512';
+}
