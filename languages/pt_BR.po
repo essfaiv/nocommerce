@@ -3,9 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NoCommerce 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/nocommerce\n"
-"POT-Creation-Date: 2018-06-07 04:38:15+00:00\n"
-"PO-Revision-Date: 2018-06-07 01:38-0300\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/f9nocommerce\n"
+"POT-Creation-Date: 2020-02-06T04:29:49+00:00\n"
+"PO-Revision-Date: 2020-02-06 02:03-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -19,40 +19,46 @@ msgstr ""
 "esc_html_x:1,2c\n"
 "X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
 msgid "NoCommerce"
 msgstr "NãoCommerce"
 
-#. Description of the plugin/theme
+#. Description of the plugin
 msgid "Disable commerce features to use WooCommerce as product catalog."
 msgstr ""
 "Desativa funções de comércio para usar WooCommerce como catálogo de produtos."
 
-#. Author of the plugin/theme
+#. Author of the plugin
 msgid "Fervidum"
 msgstr "Fervidum"
 
-#: includes/class-f9nocommerce.php:96
+#. Author URI of the plugin
+msgid "https://fervidum.github.io/"
+msgstr "http://fervidum.github.io/"
+
+#: includes/class-f9nocommerce.php:146
 msgctxt "Page slug"
 msgid "products"
 msgstr "produtos"
 
-#: includes/class-f9nocommerce.php:97
+#: includes/class-f9nocommerce.php:147
 msgctxt "Page title"
 msgid "Products"
 msgstr "Produtos"
+
+#. translators: %s: WooCommerce link
+#: includes/class-f9nocommerce.php:251
+msgid "NoCommerce depends on %s to work!"
+msgstr "NãoCommerce depende do %s para funcionar!"
 
 #~ msgid "Cloning is forbidden."
 #~ msgstr "A clonagem é proibida."
 
 #~ msgid "Unserializing instances of this class is forbidden."
 #~ msgstr "As instâncias de desserialização dessa classe são proibidas."
-
-#~ msgid "http://fervidum.github.io/"
-#~ msgstr "http://fervidum.github.io/"
 
 #~ msgid "http://fervidum.github.io"
 #~ msgstr "http://fervidum.github.io"

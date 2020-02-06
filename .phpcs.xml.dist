@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<ruleset name="NoCommerce">
+	<description>Custom ruleset for NoCommerce</description>
+
+	<!--
+	#############################################################################
+	COMMAND LINE ARGUMENTS
+	For help understanding this file: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset
+	For help using PHPCS: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
+	#############################################################################
+	-->
+
+	<!-- What to scan. -->
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+	<exclude-pattern>vendor</exclude-pattern>
+
+	<!-- Show progress and sniff codes in all reports -->
+	<arg value="sp"/>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="./"/>
+
+	<!-- Check up to 8 files simultanously. -->
+	<arg name="parallel" value="8"/>
+
+	<!--
+	#############################################################################
+	USE THE WordPress RULESET
+	#############################################################################
+	-->
+
+	<rule ref="WordPress-Core">
+		<exclude-pattern>bin</exclude-pattern>
+	</rule>
+
+	<!--
+	#############################################################################
+	PROJECT SPECIFIC CONFIGURATION FOR SNIFFS
+	#############################################################################
+	-->
+
+	<!--
+	#############################################################################
+	SELECTIVE EXCLUSIONS
+	#############################################################################
+	-->
+
+</ruleset>

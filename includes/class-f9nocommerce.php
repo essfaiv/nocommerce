@@ -105,14 +105,18 @@ final class F9nocommerce {
 	public function init() {
 		$this->load_plugin_textdomain();
 
-		add_filter( 'woocommerce_create_pages', array( $this, 'create_pages' ) );
-		add_filter( 'woocommerce_register_post_type_product', array( $this, 'post_type_product' ) );
-		add_action( 'wp_dashboard_setup', array( $this, 'remove_wc_dashboard_status' ), 11 );
-		add_filter( 'woocommerce_show_admin_bar_visit_store', '__return_false' );
-		add_filter( 'request', array( $this, 'remove_product_cat_base' ) );
-		add_filter( 'term_link', array( $this, 'product_cat_link' ), 10, 3 );
-		add_filter( 'post_type_link', array( $this, 'product_permalink' ), 10, 3 );
-		add_action( 'generate_rewrite_rules', array( $this, 'product_rewrite_rule' ) );
+		if ( class_exists( 'WooCommerce' ) ) {
+			add_filter( 'woocommerce_create_pages', array( $this, 'create_pages' ) );
+			add_filter( 'woocommerce_register_post_type_product', array( $this, 'post_type_product' ) );
+			add_action( 'wp_dashboard_setup', array( $this, 'remove_wc_dashboard_status' ), 11 );
+			add_filter( 'woocommerce_show_admin_bar_visit_store', '__return_false' );
+			add_filter( 'request', array( $this, 'remove_product_cat_base' ) );
+			add_filter( 'term_link', array( $this, 'product_cat_link' ), 10, 3 );
+			add_filter( 'post_type_link', array( $this, 'product_permalink' ), 10, 3 );
+			add_action( 'generate_rewrite_rules', array( $this, 'product_rewrite_rule' ) );
+		} else {
+			add_action( 'admin_notices', array( $this, 'woocommerce_fallback_notice' ) );
+		}
 	}
 
 	public function load_plugin_textdomain() {
@@ -139,8 +143,8 @@ final class F9nocommerce {
 		);
 
 		$pages['shop'] = array(
-			'name' => _x( 'products', 'Page slug', 'f9nocommerce' ),
-			'title' => _x( 'Products', 'Page title', 'f9nocommerce' ),
+			'name'    => _x( 'products', 'Page slug', 'f9nocommerce' ),
+			'title'   => _x( 'Products', 'Page title', 'f9nocommerce' ),
 			'content' => '',
 		);
 
@@ -153,8 +157,11 @@ final class F9nocommerce {
 
 	public function post_type_product( $args ) {
 		$product_slug = apply_filters( 'woocommerce_post_type_product_slug', 'product' );
+
 		$args['menu_icon'] = 'dashicons-building';
+
 		$args['labels']['name'] = __( 'Apartamentos' );
+
 		$args['labels']['menu_name'] = __( 'Apartamentos' );
 		$args['labels']['all_items'] = __( 'Todos os apartamentos' );
 		if ( 'product' !== $product_slug ) {
@@ -188,9 +195,11 @@ final class F9nocommerce {
 		}
 		if ( ! empty( $vars['pagename'] ) || ! empty( $vars['category_name'] ) || ! empty( $vars['name'] ) || ! empty( $vars['attachment'] ) ) {
 			$slug = ! empty( $vars['pagename'] ) ? $vars['pagename'] : ( ! empty( $vars['name'] ) ? $vars['name'] : ( ! empty( $vars['category_name'] ) ? $vars['category_name'] : $vars['attachment'] ) );
+
 			$exists = $wpdb->get_var( $wpdb->prepare( "SELECT t.term_id FROM $wpdb->terms t LEFT JOIN $wpdb->term_taxonomy tt ON tt.term_id = t.term_id WHERE tt.taxonomy = 'product_cat' AND t.slug = %s", array( $slug ) ) );
 			if ( $exists ) {
 				$old_vars = $vars;
+
 				$vars = array( 'product_cat' => $slug );
 				if ( ! empty( $old_vars['paged'] ) || ! empty( $old_vars['page'] ) ) {
 					$vars['paged'] = ! empty( $old_vars['paged'] ) ? $old_vars['paged'] : $old_vars['page'];
@@ -209,19 +218,21 @@ final class F9nocommerce {
 	public function product_cat_link( $url, $term, $taxonomy ) {
 		if ( apply_filters( 'f9nocommerce_remove_product_cat_base_link', false, $url, $term, $taxonomy ) ) {
 			$permalinks = wc_get_permalink_structure();
+
 			$url = str_replace( "/{$permalinks['category_rewrite_slug']}/", '/', $url );
 		}
 		return $url;
 	}
 
 	public function product_permalink( $permalink, $post, $leavename ) {
-		if ( 'product' != $post->post_type ) {
+		if ( 'product' !== $post->post_type ) {
 			return $permalink;
 		}
 		// Get the categories for the product
 		$categories = wp_get_post_terms( $post->ID, 'product_cat', array( 'fields' => 'slugs' ) );
-		if ( ! empty( $categories ) && in_array( 'imoveis-de-terceiros', $categories ) ) {
+		if ( ! empty( $categories ) && in_array( 'imoveis-de-terceiros', $categories, true ) ) {
 			$permalinks = wc_get_permalink_structure();
+
 			$permalink = str_replace( "{$permalinks['product_rewrite_slug']}", '/imovel-de-terceiros', $permalink );
 		}
 		return $permalink;
@@ -231,9 +242,21 @@ final class F9nocommerce {
 		$permalinks = wc_get_permalink_structure();
 		// This rule will will match the post id in imovel-de-terceiro/%postname% struture
 		$new_rules = array();
+
 		$slug = trim( $permalinks['product_rewrite_slug'], '/' );
 		$new_rules[ "^({$slug}|imovel-de-terceiros)/([^/]*)/?" ] = 'index.php?product=$matches[2]';
+
 		$wp_rewrite->rules = array_merge( $new_rules, $wp_rewrite->rules );
 		return $wp_rewrite;
+	}
+
+	/**
+	 * WooCommerce fallback notice.
+	 *
+	 * @return string Fallack notice.
+	 */
+	public function woocommerce_fallback_notice() {
+		/* translators: %s: WooCommerce link */
+		echo '<div class="error"><p>' . sprintf( __( 'NoCommerce depends on %s to work!', 'f9nocommerce' ), '<a href="http://wordpress.org/extend/plugins/woocommerce/">WooCommerce</a>' ) . '</p></div>';
 	}
 }

@@ -1,24 +1,8 @@
 {
-  "name": "essfaiv/nocommerce",
-  "description": "Disable commerce features to use WooCommerce as product catalog",
-  "type": "wordpress-plugin",
-  "require-dev": {
-    "squizlabs/php_codesniffer":"*",
-    "wp-coding-standards/wpcs": "^0.14"
-  },
-  "license": "UNLICENSED",
-  "authors": [
-    {
-      "name": "Essfaiv",
-      "email": "camaleaun@gmail.com"
+    "require-dev": {
+        "wp-cli/wp-cli-tests": "^2.1"
+    },
+    "scripts": {
+        "tests": "composer install && vendor/bin/phpcs -p"
     }
-  ],
-  "scripts": {
-    "phpcs": [
-      "./vendor/bin/phpcs -s -p"
-    ],
-    "test": [
-      "composer run-script phpcs"
-    ]
-  }
 }

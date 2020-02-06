@@ -1,0 +1,51 @@
+require:
+  - bin/command.php
+scripts:
+  install:
+    - wp cli config set path ~/.wp-cli/sites/nocommerce
+    - wp core download
+    - wp config create
+    - wp db touch
+    - wp core install
+    - wp ln
+    - wp plugin activate f9nocommerce
+    - wp plugin install woocommerce
+    - wp language plugin install woocommerce pt_BR
+    - wp plugin activate woocommerce
+    - wp theme install storefront
+    - wp language theme install storefront pt_BR
+    - wp open
+cli config set:
+  config: local
+  local-merge: true
+cli alias add:
+  config: project
+cli alias update:
+  config: project
+cli alias delete:
+  config: project
+core download:
+  locale: pt_BR
+  force: true
+config create:
+  dbname: nocommerce
+  dbprefix: yp_
+  dbuser: root
+  dbpass:
+  extra-php: |
+    define( 'WP_DEBUG', true );
+    if ( ! WP_DEBUG ) { ini_set( 'display_errors', 'Off' ); }
+    define( 'WP_MEMORY_LIMIT', '128M' );
+    define( 'WP_MAX_MEMORY_LIMIT', '512M' );
+    define( 'SAVEQUERIES', false );
+    define( 'SCRIPT_DEBUG', false );
+    define( 'JETPACK_DEV_DEBUG', true );
+    define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );
+  force: true
+  skip-check: true
+core install:
+  url: nocommerce.test
+  title: NoCommerce
+  admin_user: fervidum
+  admin_password: YPEEXk2l2l1m
+  admin_email: fervidum@essfaiv.com
