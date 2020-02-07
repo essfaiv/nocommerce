@@ -143,8 +143,8 @@ final class F9nocommerce {
 		);
 
 		$pages['shop'] = array(
-			'name'    => _x( 'products', 'Page slug', 'f9nocommerce' ),
-			'title'   => _x( 'Products', 'Page title', 'f9nocommerce' ),
+			'name'    => _x( 'products', 'Page slug', 'woocommerce' ),
+			'title'   => _x( 'Products', 'Page title', 'woocommerce' ),
 			'content' => '',
 		);
 
@@ -160,10 +160,28 @@ final class F9nocommerce {
 
 		$args['menu_icon'] = 'dashicons-building';
 
-		$args['labels']['name'] = __( 'Apartamentos' );
+		$label_name = get_option(
+			'f9nocommerce_wc_product_singular_label',
+			__( 'Product', 'woocommerce' )
+		);
+		if ( $label_name ) {
+			$args['labels']['name'] = $label_name;
+		}
 
-		$args['labels']['menu_name'] = __( 'Apartamentos' );
-		$args['labels']['all_items'] = __( 'Todos os apartamentos' );
+		$label_menu = get_option(
+			'f9nocommerce_wc_product_label',
+			__( 'Products', 'woocommerce' )
+		);
+		if ( $label_menu ) {
+			$args['labels']['menu_name'] = $label_menu;
+		}
+		$label_allitems = get_option(
+			'f9nocommerce_wc_product_all_items',
+			__( 'All Products', 'woocommerce' )
+		);
+		if ( $label_allitems ) {
+			$args['labels']['all_items'] = $label_allitems;
+		}
 		if ( 'product' !== $product_slug ) {
 			register_post_type(
 				$product_slug,

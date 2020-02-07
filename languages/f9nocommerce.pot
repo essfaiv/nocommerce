@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-06T04:29:49+00:00\n"
+"POT-Creation-Date: 2020-02-07T04:14:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: f9nocommerce\n"
@@ -30,17 +30,24 @@ msgstr ""
 msgid "https://fervidum.github.io/"
 msgstr ""
 
-#: includes/class-f9nocommerce.php:146
-msgctxt "Page slug"
-msgid "products"
+#: includes/admin/settings/class-f9nocommerce-settings-products.php:34
+#: includes/admin/settings/class-f9nocommerce-settings-products.php:53
+msgid "Labels"
 msgstr ""
 
-#: includes/class-f9nocommerce.php:147
-msgctxt "Page title"
-msgid "Products"
+#: includes/admin/settings/class-f9nocommerce-settings-products.php:60
+msgid "Plural label"
+msgstr ""
+
+#: includes/admin/settings/class-f9nocommerce-settings-products.php:69
+msgid "Singular label"
+msgstr ""
+
+#: includes/admin/settings/class-f9nocommerce-settings-products.php:78
+msgid "All Items"
 msgstr ""
 
 #. translators: %s: WooCommerce link
-#: includes/class-f9nocommerce.php:251
+#: includes/class-f9nocommerce.php:260
 msgid "NoCommerce depends on %s to work!"
 msgstr ""

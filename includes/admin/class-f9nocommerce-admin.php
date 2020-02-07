@@ -23,6 +23,7 @@ class F9nocommerce_Admin {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'includes' ) );
+		add_filter( 'woocommerce_get_settings_pages', 'F9nocommerce_Admin_Settings::settings_pages' );
 	}
 
 	/**
@@ -30,6 +31,7 @@ class F9nocommerce_Admin {
 	 */
 	public function includes() {
 		include_once dirname( __FILE__ ) . '/class-f9nocommerce-admin-assets.php';
+		include_once dirname( __FILE__ ) . '/class-f9nocommerce-admin-settings.php';
 	}
 }
 

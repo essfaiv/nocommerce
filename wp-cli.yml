@@ -7,11 +7,21 @@ scripts:
     - wp config create
     - wp db touch
     - wp core install
+    - wp user meta update 1 show_welcome_panel 0
     - wp ln
     - wp plugin activate f9nocommerce
     - wp plugin install woocommerce
     - wp language plugin install woocommerce pt_BR
     - wp plugin activate woocommerce
+    - wp user meta update 1 dismissed_install_notice 1
+    - wp user meta update 1 dismissed_no_secure_connection_notice 1
+    - wp user meta update 1 dismissed_wc_admin_notice 1
+    - wp option update woocommerce_default_country BR:SC
+    - wp option update woocommerce_allowed_countries specific
+    - wp option add woocommerce_specific_allowed_countries '["BR"]' --format=json
+    - wp option update woocommerce_currency BRL
+    - wp option update woocommerce_price_thousand_sep .
+    - wp option update woocommerce_price_decimal_sep ,
     - wp theme install storefront
     - wp language theme install storefront pt_BR
     - wp open
